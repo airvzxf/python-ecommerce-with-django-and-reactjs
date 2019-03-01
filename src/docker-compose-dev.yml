@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.7'
 
 services:
 
@@ -9,6 +9,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - 3306:3306/tcp
+    networks:
+      - webnet
 
   phpmyadmin:
     depends_on:
@@ -18,6 +20,8 @@ services:
     restart: always
     ports:
       - 8080:80/tcp
+    networks:
+      - webnet
 
   web:
     image: python_ecommerce_web:dev
@@ -27,3 +31,16 @@ services:
       - 80:80/tcp
     environment:
       NAME: "cool Developer"
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+
+networks:
+  webnet:
