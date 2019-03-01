@@ -1,0 +1,4 @@
+FROM phpmyadmin/phpmyadmin
+
+ENV PMA_HOST python_ecommerce_database_dev
+ENV MYSQL_ROOT_PASSWORD 000
