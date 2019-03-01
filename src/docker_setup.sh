@@ -4,7 +4,8 @@
 #pacman -S docker
 
 # Check if docker daemon is running?
-sudo systemctl status docker
+sudo systemctl status docker.socket
+sudo systemctl status docker.service
 
 # Docker is owned by root, we need to add to our user.
 ls -la /var/run/docker.sock
@@ -19,7 +20,8 @@ sudo usermod -aG docker ${USER}
 groups
 
 # Start the docker daeomn every time your machine startups.
-sudo systemctl enable docker
+sudo systemctl enable docker.socket
+sudo systemctl enable docker.service
 
 # Restart your computer
 # TODO: Add input to ask if you want to reboot your computer.
