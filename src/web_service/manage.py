@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-"""Tha main manage file of the API Restful"""
+"""Tha main Manage file of the API Restful"""
 
 import os
 import sys
@@ -14,5 +14,5 @@ if __name__ == '__main__':
             "Couldn't import Django. Are you sure it's installed and "
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
-        ) from exc
+        )
     execute_from_command_line(sys.argv)
