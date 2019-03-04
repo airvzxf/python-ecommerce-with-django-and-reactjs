@@ -12,6 +12,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     """
     Customer serializer class.
     """
+
     class Meta:
         """
         Meta class for Customer serializer class.

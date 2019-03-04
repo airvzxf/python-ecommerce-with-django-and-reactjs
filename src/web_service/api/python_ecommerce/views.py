@@ -3,7 +3,6 @@
 """
 Create views for the API calls.
 """
-# Create your views here.
 from rest_framework import generics
 
 from api.python_ecommerce.serializers import CustomerSerializer
