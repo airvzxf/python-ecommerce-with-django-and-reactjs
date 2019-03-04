@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+"""Tha main manage file of the API Restful"""
+
 import os
 import sys
 

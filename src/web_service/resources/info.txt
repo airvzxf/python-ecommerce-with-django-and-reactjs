@@ -1,7 +1,18 @@
-```bash
-python manage.py migrate
-python manage.py createsuperuser --email admin@example.com --username admin
+The base of this scripts is `**/web_service/`
 
-# Password:
-# Python1234Ecommerce!
+```bash
+./venv/bin/python manage.py inspectdb >> api/python_ecommerce/models.py
+./venv/bin/python manage.py migrate
+./venv/bin/python manage.py createsuperuser --email admin@example.com --username admin
+
+# User: admin
+# Password: Python1234Ecommerce!
+```
+
+
+
+Run test
+
+```bash
+./venv/bin/python manage.py test
 ```
