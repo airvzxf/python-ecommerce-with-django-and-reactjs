@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-  db:
+  mysql:
     image: python_ecommerce_database:dev
     container_name: python_ecommerce_database_dev
     restart: always
@@ -21,38 +21,19 @@ services:
     networks:
       - webnet
     depends_on:
-     - db
+     - mysql
 
   web_service:
     image: python_ecommerce_web_service:dev
     container_name: python_ecommerce_web_service_dev
     restart: always
-    command: python manage.py runserver 0.0.0.0:8001
+    command: ["./run.sh", "0.0.0.0", "8001", "mysql", "3306"]
     ports:
       - 8001:8001/tcp
     networks:
       - webnet
     depends_on:
-     - db
-
-#  web:
-#    image: python_ecommerce_web:dev
-#    container_name: python_ecommerce_web_dev
-#    restart: always
-#    ports:
-#      - 80:80/tcp
-#    environment:
-#      NAME: "cool Developer"
-#    deploy:
-#      replicas: 5
-#      resources:
-#        limits:
-#          cpus: "0.1"
-#          memory: 50M
-#      restart_policy:
-#        condition: on-failure
-#    networks:
-#      - webnet
+     - mysql
 
 networks:
   webnet:
