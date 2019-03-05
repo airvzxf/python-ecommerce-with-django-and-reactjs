@@ -16,8 +16,8 @@ APP=web_service
 ./docker_create_container.sh -n ${PROJECT} -z ${LABEL} -a ${APP}
 
 
-#APP=web
-#./docker_create_container.sh -n ${PROJECT} -z ${LABEL} -a ${APP}
+APP=web
+./docker_create_container.sh -n ${PROJECT} -z ${LABEL} -a ${APP}
 
 
 #yes | docker container prune

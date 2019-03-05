@@ -1,14 +1,17 @@
-FROM python:3-slim
+FROM node
 
-WORKDIR /web
+RUN mkdir /usr/src/app
 
-COPY . /web
+WORKDIR /usr/src/app
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-# Make port 80 available to the world outside this container
-EXPOSE 80/tcp
+COPY package.json /usr/src/app/package.json
 
-# Run app.py when the container launches
-CMD ["python", "./app.py"]
+#RUN npm install --silent
+RUN npm install
+
+#RUN npm install react-scripts@1.1.1 -g --silent
+RUN npm install react-scripts@1.1.1 -g
+
+CMD ["npm", "start"]
