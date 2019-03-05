@@ -26,13 +26,22 @@ class AppCustomer(models.Model):
         managed = False
         db_table = 'app_customer'
 
+    def __unicode__(self):
+        return self.first_name
+
+    def __str__(self):
+        return '%d: %s, %s | %s' % (self.id_app_customer, self.last_name, self.first_name, self.email)
+
 
 class AppOrders(models.Model):
     """
     Orders model class.
     """
     id_app_orders = models.AutoField(primary_key=True)
-    id_app_customer = models.ForeignKey(AppCustomer, models.DO_NOTHING, db_column='id_app_customer')
+    id_app_customer = models.ForeignKey(AppCustomer,
+                                        related_name='customer_orders',
+                                        on_delete=models.DO_NOTHING,
+                                        db_column='id_app_customer')
     utc_date = models.DateTimeField(blank=True, null=True)
     total = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
 
@@ -40,6 +49,12 @@ class AppOrders(models.Model):
         managed = False
         db_table = 'app_orders'
         unique_together = (('id_app_orders', 'id_app_customer'),)
+
+    def __unicode__(self):
+        return self.utc_date
+
+    def __str__(self):
+        return '%d: %s | %s' % (self.id_app_orders, self.utc_date, self.total)
 
 
 class AppProduct(models.Model):
@@ -55,15 +70,30 @@ class AppProduct(models.Model):
         managed = False
         db_table = 'app_product'
 
+    def __unicode__(self):
+        return self.sku
+
+    def __str__(self):
+        return '%d: %s | %s | %s' % (self.id_app_product, self.name, self.price, self.sku)
+
 
 class AppOrdersDetail(models.Model):
     """
     Orders detail model class.
     """
     id_app_orders_detail = models.AutoField(primary_key=True)
-    id_app_orders = models.ForeignKey(AppOrders, models.DO_NOTHING, db_column='id_app_orders')
-    id_app_customer = models.ForeignKey(AppCustomer, models.DO_NOTHING, db_column='id_app_customer')
-    id_app_product = models.ForeignKey(AppProduct, models.DO_NOTHING, db_column='id_app_product')
+    id_app_orders = models.ForeignKey(AppOrders,
+                                      related_name='order_details',
+                                      on_delete=models.DO_NOTHING,
+                                      db_column='id_app_orders')
+    id_app_customer = models.ForeignKey(AppCustomer,
+                                        related_name='customer_details',
+                                        on_delete=models.DO_NOTHING,
+                                        db_column='id_app_customer')
+    id_app_product = models.ForeignKey(AppProduct,
+                                       related_name='product_details',
+                                       on_delete=models.DO_NOTHING,
+                                       db_column='id_app_product')
     price = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
     quantity = models.PositiveIntegerField()
 
@@ -71,3 +101,9 @@ class AppOrdersDetail(models.Model):
         managed = False
         db_table = 'app_orders_detail'
         unique_together = (('id_app_orders_detail', 'id_app_orders', 'id_app_customer', 'id_app_product'),)
+
+    def __unicode__(self):
+        return self.quantity
+
+    def __str__(self):
+        return '%d: %s | %s' % (self.id_app_orders_detail, self.price, self.quantity)
