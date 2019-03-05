@@ -1,6 +1,6 @@
 #!/bin/bash -xve
 
-
+./build.sh
 #clr && docker service rm $(docker service ls -q) && docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)
 #clr && docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)
 #docker stack deploy -c ./docker-compose-dev.yml python_ecommerce_stack
