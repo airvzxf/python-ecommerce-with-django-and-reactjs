@@ -11,7 +11,7 @@ config = {
     'host': '127.0.0.1',
     'port': '3306',
     'database': 'python_ecommerce',
-    'raise_on_warnings': True
+    'raise_on_warnings': True,
 }
 
 
