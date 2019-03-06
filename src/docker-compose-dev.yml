@@ -16,6 +16,8 @@ services:
     image: python_ecommerce_phpmyadmin:dev
     container_name: python_ecommerce_phpmyadmin_dev
     restart: always
+    environment:
+     - PMA_HOST=python_ecommerce_database_dev
     ports:
       - 8080:80/tcp
     networks:
