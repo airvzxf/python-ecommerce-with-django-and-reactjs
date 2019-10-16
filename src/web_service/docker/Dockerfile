@@ -10,3 +10,5 @@ COPY requirements.txt /usr/src/app/
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 COPY . /usr/src/app/
+
+CMD ./run.sh "${HOST}" "${PORT}" "${DB_HOST}" "${DB_PORT}"

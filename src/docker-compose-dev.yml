@@ -16,7 +16,7 @@ services:
     container_name: python_ecommerce_phpmyadmin_dev
     restart: always
     environment:
-     - PMA_HOST=python_ecommerce_database_dev
+     - MY_DB_PMA_HOST=python_ecommerce_database_dev
     ports:
       - 8080:80/tcp
     networks:
@@ -28,7 +28,12 @@ services:
     image: python_ecommerce_web_service:dev
     container_name: python_ecommerce_web_service_dev
     restart: always
-    command: ["./run.sh", "0.0.0.0", "8000", "mysql", "3306"]
+#    command: ["./run.sh", "0.0.0.0", "8000", "mysql", "3306"]
+    environment:
+     - HOST=0.0.0.0
+     - PORT=8000
+     - DB_HOST=mysql
+     - DB_PORT=3306
     ports:
       - 8000:8000/tcp
     networks:
