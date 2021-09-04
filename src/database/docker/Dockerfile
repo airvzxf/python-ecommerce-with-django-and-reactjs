@@ -1,4 +1,4 @@
-FROM mysql
+FROM mysql:8.0
 
 ENV MYSQL_DATABASE python_ecommerce
 ENV MYSQL_ROOT_PASSWORD 000
