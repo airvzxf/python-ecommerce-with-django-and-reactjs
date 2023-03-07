@@ -1,5 +1,5 @@
 # FROM python:3-slim
-FROM python:3
+FROM python:3.12.0a5-slim
 
 ENV PYTHONUNBUFFERED 1
 
